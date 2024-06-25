@@ -4,6 +4,68 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>버디의 실내 사진</title>
+    <script>
+        // 키보드로 사진 둘러보기
+
+// 라이트박스 키보드로 
+function initializeLightboxKeyboardNavigation() {
+    const lightboxes = document.querySelectorAll('.lightbox');
+
+    // 키보드 눌렀을때
+    function handleKeyPress(event) {
+        // 현재 보이는 라이트박스
+        const currentLightbox = document.querySelector('.lightbox:target');
+
+        if (!currentLightbox) return; // 라이트박스 없을 시 exit
+
+        // 화살표 누를시
+        switch (event.key) {
+            case 'ArrowLeft':
+                navigateLightbox(currentLightbox, 'previous');
+                break;
+            case 'ArrowRight':
+                navigateLightbox(currentLightbox, 'next');
+                break;
+            case 'Escape':
+                currentLightbox.style.display = 'none'; // Esc 누르면 라이트박스 닫음
+                break;
+            default:
+                return; // 다른 키 누를 시 exit
+        }
+    }
+
+    // 라이트박스 이미지 전환
+    function navigateLightbox(currentLightbox, direction) {
+        const lightboxId = currentLightbox.id;
+        const lightboxIndex = parseInt(lightboxId.match(/\d+/)[0]); // 인덱스 추출
+        let newIndex;
+
+        if (direction === 'next') {
+            newIndex = lightboxIndex % lightboxes.length + 1; // 다음 이미지 인덱스
+        } else if (direction === 'previous') {
+            newIndex = lightboxIndex === 1 ? lightboxes.length : lightboxIndex - 1; // 이전 이미지 인덱스
+        }
+
+        // 현재 라이트박스 닫음
+        currentLightbox.style.display = 'none';
+
+        // 업데이트된 인덱스로 새로운 라이트박스 열기
+        const newLightboxId = `lightbox${newIndex}`;
+        const newLightbox = document.getElementById(newLightboxId);
+        newLightbox.style.display = 'flex';
+
+        // URL 갱신
+        history.replaceState(null, null, `#${newLightboxId}`);
+    }
+
+    // 키보드 이벤트 처리 함수
+    document.addEventListener('keydown', handleKeyPress);
+}
+
+// 페이지 시작 때 위 함수 로드
+window.addEventListener('load', initializeLightboxKeyboardNavigation);
+
+    </script>
     <style>
         body {
             background-image:url(cropped_image.jpg);

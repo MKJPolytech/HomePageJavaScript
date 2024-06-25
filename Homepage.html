@@ -4,7 +4,29 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>버디의 홈페이지</title>
+    <script>
+        // 개 격언 목록
+        var dogQuotes = [
+            "개는 최고의 친구입니다.",
+            "개가 있으면 집이 진정된 집이 됩니다.",
+            "개는 우리의 충실한 동반자입니다.",
+            "개는 항상 우리를 기쁘게 만듭니다."
+        ];
+    
+        // 랜덤 출력 펑션
+        function displayRandomQuote() {
+            var randomIndex = Math.floor(Math.random() * dogQuotes.length);
+            document.getElementById('quote-text').textContent = dogQuotes[randomIndex];
+        }
+    
+        // 페이지가 로드하면 펑션 활성화
+        window.onload = function() {
+            displayRandomQuote();
+        };
+    </script>
+    
     <style>
+        
         body {
             background-image:url(cropped_image.jpg);
             background-repeat: no-repeat;
@@ -101,6 +123,12 @@
     <main>
         <h2>버디의 홈페이지</h2>
         <p>이곳은 저희 집의 사랑스러운 강아지인 버디의 홈페이지 입니다.</p>
+        <p id="current-date"></p>
+    
+        <div id="quote-container">
+            <h3>오늘의 명언</h3>
+            <p id="quote-text"></p>
+        </div>
     </main>
     <footer>
         <p>&copy; 2024 My Homepage. All rights reserved.</p>

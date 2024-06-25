@@ -4,6 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>버디에 대하여</title>
+    <footer>
+        <p id="footer-year">&copy; <span id="current-year"></span> My Homepage. All rights reserved.</p>
+    </footer>
+   
+    <script>
+        // JavaScript로 년도 쉽게 업데이트하기
+        document.getElementById('current-year').textContent = new Date().getFullYear();
+    
+    </script>
+    
     <style>
         body {
             background-image:url(cropped_image.jpg);
@@ -88,7 +98,7 @@
                 background-size: 100%;
             }
             nav {
-                margin-top: 150px; /* Adjust for smaller screens */
+                margin-top: 150px;
             }
             header {
                 width: 90%; 
@@ -128,7 +138,7 @@
         <p>버디는 간식과 산책을 좋아하는 강아지 입니다. 우리 집에는 2020년 9월 경에 왔습니다. 처음에 30cm 정도의 길이였던 녀석이 엄청 컸네요.</p>
     </div>
     <footer>
-        <p>&copy; 2024 My Homepage. All rights reserved.</p>
+        
     </footer>
 </body>
 </html>
